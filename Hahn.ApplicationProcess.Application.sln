@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicationProcess.Dec
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web apps", "web apps", "{C678CBBA-D9B9-46C7-BF28-FFF22C7EDB25}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0CDC62E9-40D6-48D1-A9E8-DFC5C84AFA2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationProcessing.UnitTests", "src\services\ApplicationProcessing\tests\ApplicationProcessing.UnitTests\ApplicationProcessing.UnitTests.csproj", "{49F0405D-D670-4952-A673-17F661D34BCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{529A120D-F8F9-42CF-9D1E-7F0A2BB7E953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{529A120D-F8F9-42CF-9D1E-7F0A2BB7E953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{529A120D-F8F9-42CF-9D1E-7F0A2BB7E953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49F0405D-D670-4952-A673-17F661D34BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49F0405D-D670-4952-A673-17F661D34BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49F0405D-D670-4952-A673-17F661D34BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49F0405D-D670-4952-A673-17F661D34BCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +40,8 @@ Global
 		{D818490A-CF28-4320-A286-B887C31D383A} = {47819332-D68B-4944-B487-8A10CAFBE73E}
 		{529A120D-F8F9-42CF-9D1E-7F0A2BB7E953} = {D818490A-CF28-4320-A286-B887C31D383A}
 		{C678CBBA-D9B9-46C7-BF28-FFF22C7EDB25} = {F2CDAB87-5A26-4C55-ABDD-5049B316F932}
+		{0CDC62E9-40D6-48D1-A9E8-DFC5C84AFA2F} = {D818490A-CF28-4320-A286-B887C31D383A}
+		{49F0405D-D670-4952-A673-17F661D34BCA} = {0CDC62E9-40D6-48D1-A9E8-DFC5C84AFA2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3AC9A949-41A1-4F06-BB5F-CD24D52FF458}
