@@ -1,4 +1,5 @@
-﻿using Hahn.ApplicationProcess.December2020.Domain.SeedWork;
+﻿using Hahn.ApplicationProcess.December2020.Domain.Exceptions;
+using Hahn.ApplicationProcess.December2020.Domain.SeedWork;
 
 namespace Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate
 {
@@ -17,5 +18,16 @@ namespace Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantA
 
         public static Applicant AddApplicant(Person person, Contact contact) => 
             new Applicant(person, contact, false);
+
+        public void Update(Person person, Contact contact)
+        {
+            if (Hired)
+                throw new ApplicationProcessDomainException("This applicant could not be changed because it has been accepted!");
+
+            Person = person;
+            Contact = contact;
+        }
+
+        public void Hire() => Hired = true;
     }
 }
