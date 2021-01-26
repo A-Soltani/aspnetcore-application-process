@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hahn.ApplicationProcess.December2020.Application</name>
+    </assembly>
+    <members>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant.AddApplicantCommand.Name">
+            <example>Ali</example>
+        </member>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant.AddApplicantCommand.FamilyName">
+            <example>Soltani</example>
+        </member>
+    </members>
+</doc>
