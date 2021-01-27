@@ -1,4 +1,7 @@
-﻿using Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using FluentValidation.AspNetCore;
+using Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +20,13 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.CustomExtensio
             return services;
         }
 
-
+        public static void AddFluentValidation(this IServiceCollection services, IEnumerable<Assembly> assembly)
+        {
+            services.AddMvc().AddFluentValidation(c =>
+            {
+                c.RegisterValidatorsFromAssemblies(assembly);
+                c.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+            });
+        }
     }
 }

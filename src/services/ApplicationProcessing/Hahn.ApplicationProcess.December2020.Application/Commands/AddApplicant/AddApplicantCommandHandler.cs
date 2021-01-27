@@ -15,7 +15,7 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 
         protected override Task Handle(AddApplicantCommand request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 using Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant;
 using Hahn.ApplicationProcess.December2020.Web.Infrastructure.CustomExtensions;
 using MediatR;
@@ -28,13 +29,21 @@ namespace Hahn.ApplicationProcess.December2020.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddValidatorsFromAssemblyContaining(typeof(AddApplicantCommandValidator));
+            //services.AddTransient<IValidator<AddApplicantCommand>, AddApplicantCommandValidator>();
+            services.AddFluentValidation(new[]
+            {
+                typeof(AddApplicantCommand).Assembly
+            });
             services.AddCustomSwagger()
                 .AddCustomCors()
+                .AddCustomMediatr()
                 .AddInfrastructureServices(Configuration)
-                .AddMediatR(typeof(AddApplicantCommandHandler))
                 //.AuthenticationService(Configuration)
                 .AddControllers();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
