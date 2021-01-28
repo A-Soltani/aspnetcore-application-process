@@ -5,7 +5,7 @@
     </assembly>
     <members>
         <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant.AddApplicantCommand.Name">
-            <example>Ali</example>
+            <example>Dear Ali</example>
         </member>
         <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant.AddApplicantCommand.FamilyName">
             <example>Soltani</example>

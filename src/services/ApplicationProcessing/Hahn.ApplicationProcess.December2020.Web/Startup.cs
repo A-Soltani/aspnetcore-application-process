@@ -29,14 +29,9 @@ namespace Hahn.ApplicationProcess.December2020.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddValidatorsFromAssemblyContaining(typeof(AddApplicantCommandValidator));
-            //services.AddTransient<IValidator<AddApplicantCommand>, AddApplicantCommandValidator>();
-            services.AddFluentValidation(new[]
-            {
-                typeof(AddApplicantCommand).Assembly
-            });
             services.AddCustomSwagger()
                 .AddCustomCors()
+                .AddCustomFluentValidation()
                 .AddCustomMediatr()
                 .AddInfrastructureServices(Configuration)
                 //.AuthenticationService(Configuration)

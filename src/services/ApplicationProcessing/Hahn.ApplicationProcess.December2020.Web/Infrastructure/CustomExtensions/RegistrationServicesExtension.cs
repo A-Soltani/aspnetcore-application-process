@@ -20,13 +20,6 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.CustomExtensio
             return services;
         }
 
-        public static void AddFluentValidation(this IServiceCollection services, IEnumerable<Assembly> assembly)
-        {
-            services.AddMvc().AddFluentValidation(c =>
-            {
-                c.RegisterValidatorsFromAssemblies(assembly);
-                c.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
-            });
-        }
+        
     }
 }

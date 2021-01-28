@@ -4,7 +4,7 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 {
     public class AddApplicantCommand : IRequest
     {
-        /// <example>Ali</example>
+        /// <example>Dear Ali</example>
         public string Name { get; set; }
         /// <example>Soltani</example>
         public string FamilyName { get; set; }
