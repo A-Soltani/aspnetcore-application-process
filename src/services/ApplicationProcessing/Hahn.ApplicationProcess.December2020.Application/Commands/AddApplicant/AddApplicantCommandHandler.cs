@@ -1,21 +1,40 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
+using Hahn.ApplicationProcess.December2020.Infrastructure.ExternalServices.RestCountries;
 using MediatR;
 
 namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 {
-    public class AddApplicantCommandHandler: AsyncRequestHandler<AddApplicantCommand>
+    public class AddApplicantCommandHandler : IRequestHandler<AddApplicantCommand, Applicant>
     {
-        //private readonly IApplicantRepository _applicantRepository;
+        private readonly ICountryClient _countryClient;
 
-        //public AddApplicantCommandHandler(IApplicantRepository applicantRepository) => 
-        //    _applicantRepository = applicantRepository ?? throw new ArgumentNullException(nameof(applicantRepository));
+        private readonly IApplicantRepository _applicantRepository;
 
-        protected override Task Handle(AddApplicantCommand request, CancellationToken cancellationToken)
+        public AddApplicantCommandHandler(ICountryClient countryClient, IApplicantRepository applicantRepository)
         {
-            return Task.CompletedTask;
+            _countryClient = countryClient ?? throw new ArgumentNullException(nameof(countryClient));
+            _applicantRepository = applicantRepository ?? throw new ArgumentNullException(nameof(applicantRepository));
         }
+
+        public async Task<Applicant> Handle(AddApplicantCommand request, CancellationToken cancellationToken)
+        {
+             await ValidateCountry(request.CountryOfOrigin);
+
+             return null;
+        }
+
+        private async Task ValidateCountry(string countryOfOrigin)
+        {
+            var response = await _countryClient.GetCountry(countryOfOrigin);
+            if (response.StatusCode == HttpStatusCode.NotFound)
+                throw new ValidationException($"There is no country named {countryOfOrigin}");
+        }
+
+        
     }
 }

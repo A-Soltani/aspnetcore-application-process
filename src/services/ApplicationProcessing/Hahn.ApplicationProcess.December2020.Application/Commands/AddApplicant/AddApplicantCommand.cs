@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
+using MediatR;
 
 namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 {
-    public class AddApplicantCommand : IRequest
+    public class AddApplicantCommand : IRequest<Applicant>
     {
         /// <example>Dear Ali</example>
         public string Name { get; set; }

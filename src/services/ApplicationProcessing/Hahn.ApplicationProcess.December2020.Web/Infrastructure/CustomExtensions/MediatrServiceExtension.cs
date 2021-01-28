@@ -1,5 +1,4 @@
-﻿using Hahn.ApplicationProcess.December2020.Application.Behaviors;
-using Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant;
+﻿using Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 

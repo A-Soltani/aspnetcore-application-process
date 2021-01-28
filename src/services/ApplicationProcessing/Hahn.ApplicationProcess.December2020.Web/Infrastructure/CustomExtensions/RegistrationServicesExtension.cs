@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
 using Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,9 +14,9 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.CustomExtensio
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicantContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("StudentManagementConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("ApplicationProcessConnection")));
 
-            //services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IApplicantRepository, ApplicantRepository>();
 
             return services;
         }

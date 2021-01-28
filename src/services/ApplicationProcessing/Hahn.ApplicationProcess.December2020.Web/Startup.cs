@@ -30,15 +30,14 @@ namespace Hahn.ApplicationProcess.December2020.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCustomSwagger()
-                .AddCustomCors()
-                .AddCustomFluentValidation()
-                .AddCustomMediatr()
-                .AddInfrastructureServices(Configuration)
-                //.AuthenticationService(Configuration)
-                .AddControllers();
+                    .AddCustomCors()
+                    .AddCustomFluentValidation()
+                    .AddCustomMediatr()
+                    .AddCustomRefitClients(Configuration)
+                    .AddInfrastructureServices(Configuration)
+                    //.AuthenticationService(Configuration)
+                    .AddControllers();
         }
-
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

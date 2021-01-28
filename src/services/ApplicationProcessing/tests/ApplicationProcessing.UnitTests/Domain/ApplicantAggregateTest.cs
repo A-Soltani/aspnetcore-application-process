@@ -20,30 +20,10 @@ namespace ApplicationProcessing.UnitTests.Domain
             var fakeApplicant = GetFakeApplicant();
             fakeApplicant.Hire();
 
-            var fakePerson = GetFakePerson();
-            var fakeContact = GetFakeContact();
-
-            Assert.Throws<ApplicationProcessDomainException>(() => fakeApplicant.Update(fakePerson,fakeContact));
+            Assert.Throws<ApplicationProcessDomainException>(() => fakeApplicant.Update("Test", "Test Family", 30, "test@test.com", new Address()));
         }
 
-        private Applicant GetFakeApplicant()
-        {
-            var fakePerson = GetFakePerson();
-            var fakeContact = GetFakeContact();
-
-            var fakeApplicant = Applicant.AddApplicant(fakePerson, fakeContact);
-            return fakeApplicant;
-        }
-
-        private Person GetFakePerson() => 
-            new Person("test", "test", "IRAN", 25);
-
-        private Contact GetFakeContact()
-        {
-            var fakeAddress = new Address("test street", "test city", "Tehran", "IRAN", "+98");
-            var fakeContact = new Contact("test@test.com", fakeAddress);
-            return fakeContact;
-        }
-
+        private Applicant GetFakeApplicant() => 
+            Applicant.AddApplicant("Test", "Test Family", 30, "test@test.com", new Address());
     }
 }

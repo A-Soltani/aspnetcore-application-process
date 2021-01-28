@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Hahn.ApplicationProcess.December2020.Domain\Hahn.ApplicationProcess.December2020.Domain.csproj" />
+    <ProjectReference Include="..\Hahn.ApplicationProcess.December2020.Infrastructure\Hahn.ApplicationProcess.December2020.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
