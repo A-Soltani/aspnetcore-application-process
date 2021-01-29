@@ -23,9 +23,6 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 
         public async Task<int> Handle(AddApplicantCommand request, CancellationToken cancellationToken)
         {
-            // ToDo costume ruleFor
-            await ValidateCountry(request.CountryOfOrigin);
-
             var address = new Address(request.City, request.CountryOfOrigin);
             var applicant = Applicant.AddApplicant(request.Name, request.FamilyName, request.Age, request.EmailAddress, address);
 
@@ -34,15 +31,6 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 
             return applicant.Id;
         }
-
-        private async Task ValidateCountry(string countryOfOrigin)
-        {
-            //ToDo Cash api county valid list valid country
-            var response = await _countryClient.GetCountry(countryOfOrigin);
-            if (response.StatusCode == HttpStatusCode.NotFound)
-                throw new ValidationException($"There is no country named {countryOfOrigin}");
-        }
-
 
     }
 }

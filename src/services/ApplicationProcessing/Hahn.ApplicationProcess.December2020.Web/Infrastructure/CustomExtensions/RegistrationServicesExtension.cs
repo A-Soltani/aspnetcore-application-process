@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using FluentValidation.AspNetCore;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
+using Hahn.ApplicationProcess.December2020.Infrastructure.ExternalServices.RestCountries;
 using Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +17,8 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.CustomExtensio
         {
             services.AddDbContext<ApplicantContext>(options => options.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
 
-            services.AddScoped<IApplicantRepository, ApplicantRepository>();
+            services.AddTransient<IApplicantRepository, ApplicantRepository>();
+            services.AddTransient<ICountryService, CountryService>();
 
             return services;
         }

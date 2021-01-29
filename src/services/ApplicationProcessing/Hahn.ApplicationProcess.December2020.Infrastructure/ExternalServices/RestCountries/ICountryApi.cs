@@ -7,6 +7,6 @@ namespace Hahn.ApplicationProcess.December2020.Infrastructure.ExternalServices.R
     public interface ICountryClient
     {
         [Get("/name/{name}")]
-        Task<HttpResponseMessage> GetCountry(string name);
+        Task<ApiResponse<HttpResponseMessage>> GetCountry(string name);
     }
 }

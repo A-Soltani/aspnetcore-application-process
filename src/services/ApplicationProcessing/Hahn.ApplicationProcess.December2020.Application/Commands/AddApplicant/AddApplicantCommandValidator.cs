@@ -1,11 +1,17 @@
-﻿using FluentValidation;
+﻿using System;
+using System.Threading;
+using FluentValidation;
+using Hahn.ApplicationProcess.December2020.Infrastructure.ExternalServices.RestCountries;
 
 namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 {
     public class AddApplicantCommandValidator : AbstractValidator<AddApplicantCommand>
     {
-        public AddApplicantCommandValidator()
+        private readonly ICountryService _countryService;
+        public AddApplicantCommandValidator(ICountryService countryService)
         {
+            _countryService = countryService ?? throw new ArgumentNullException(nameof(countryService));
+
             RuleFor(applicant => applicant.Age)
                 .NotNull()
                 .WithMessage("Age is required")
@@ -14,9 +20,13 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
             RuleFor(applicant => applicant.City)
                 .NotEmpty()
                 .WithMessage("City is required");
-            RuleFor(applicant => applicant.CountryOfOrigin)
+
+            RuleFor(x => x.CountryOfOrigin)
                 .NotEmpty()
-                .WithMessage("CountryOfOrigin is required");
+                .WithMessage("CountryOfOrigin is required")
+                .MustAsync(async (countryName, cancellation) => await _countryService.CountryExists(countryName))
+                .WithMessage("Country not found.");
+
             RuleFor(dto => dto.EmailAddress)
                 .NotEmpty().
                 WithMessage("Email Address is required")

@@ -26,7 +26,7 @@ namespace Hahn.ApplicationProcess.December2020.Web.Controllers
         public async Task<IActionResult> AddApplicant([FromBody] AddApplicantCommand addApplicantCommand)
         {
             var applicantId = await _mediator.Send(addApplicantCommand);
-            return CreatedAtRoute(nameof(GetApplicant), new { id = applicantId }, new {applicantId = applicantId });
+            return CreatedAtRoute(nameof(GetApplicant), new { id = applicantId }, new {applicantId });
         }
 
         [HttpGet("{id:int}", Name = nameof(GetApplicant))]
@@ -45,5 +45,5 @@ namespace Hahn.ApplicationProcess.December2020.Web.Controllers
 
 
     }
-    
+
 }
