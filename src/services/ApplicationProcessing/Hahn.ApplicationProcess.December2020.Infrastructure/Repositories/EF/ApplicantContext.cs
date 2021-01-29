@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
 using Hahn.ApplicationProcess.December2020.Domain.SeedWork;
+using Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF.EntityConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF
@@ -17,6 +18,12 @@ namespace Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF
         }
 
         public DbSet<Applicant> Applicants { get; set; }
+        public DbSet<Address> Address { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ApplicantEntityTypeConfiguration());
+        }
 
         public async Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {

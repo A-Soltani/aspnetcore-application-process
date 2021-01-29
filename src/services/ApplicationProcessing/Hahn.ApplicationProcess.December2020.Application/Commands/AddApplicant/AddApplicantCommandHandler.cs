@@ -23,9 +23,16 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 
         public async Task<Applicant> Handle(AddApplicantCommand request, CancellationToken cancellationToken)
         {
-             await ValidateCountry(request.CountryOfOrigin);
+            await ValidateCountry(request.CountryOfOrigin);
 
-             return null;
+            var address = new Address(request.City, request.CountryOfOrigin);
+            var applicant = Applicant.AddApplicant(request.Name, request.Name, request.Age, request.EmailAddress, address);
+
+            await _applicantRepository.Add(applicant);
+            await _applicantRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+
+
+            return applicant;
         }
 
         private async Task ValidateCountry(string countryOfOrigin)
@@ -35,6 +42,6 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
                 throw new ValidationException($"There is no country named {countryOfOrigin}");
         }
 
-        
+
     }
 }
