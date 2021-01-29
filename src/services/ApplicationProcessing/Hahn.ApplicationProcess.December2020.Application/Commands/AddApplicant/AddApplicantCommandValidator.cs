@@ -21,11 +21,11 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
                 .NotEmpty()
                 .WithMessage("City is required");
 
-            RuleFor(x => x.CountryOfOrigin)
+            RuleFor(applicant => applicant.CountryOfOrigin)
                 .NotEmpty()
                 .WithMessage("CountryOfOrigin is required")
                 .MustAsync(async (countryName, cancellation) => await _countryService.CountryExists(countryName))
-                .WithMessage("Country not found.");
+                .WithMessage($"Country not found.");
 
             RuleFor(dto => dto.EmailAddress)
                 .NotEmpty().
