@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using FluentValidation.AspNetCore;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
@@ -13,8 +14,7 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.CustomExtensio
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicantContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("ApplicationProcessConnection")));
+            services.AddDbContext<ApplicantContext>(options => options.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
 
             services.AddScoped<IApplicantRepository, ApplicantRepository>();
 
@@ -22,5 +22,9 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.CustomExtensio
         }
 
         
+    }
+
+    public class Services
+    {
     }
 }

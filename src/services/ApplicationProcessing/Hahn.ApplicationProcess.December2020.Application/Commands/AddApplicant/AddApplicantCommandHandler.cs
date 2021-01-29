@@ -9,7 +9,7 @@ using MediatR;
 
 namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 {
-    public class AddApplicantCommandHandler : IRequestHandler<AddApplicantCommand, Applicant>
+    public class AddApplicantCommandHandler : IRequestHandler<AddApplicantCommand, int>
     {
         private readonly ICountryClient _countryClient;
 
@@ -21,22 +21,23 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
             _applicantRepository = applicantRepository ?? throw new ArgumentNullException(nameof(applicantRepository));
         }
 
-        public async Task<Applicant> Handle(AddApplicantCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(AddApplicantCommand request, CancellationToken cancellationToken)
         {
+            // ToDo costume ruleFor
             await ValidateCountry(request.CountryOfOrigin);
 
             var address = new Address(request.City, request.CountryOfOrigin);
-            var applicant = Applicant.AddApplicant(request.Name, request.Name, request.Age, request.EmailAddress, address);
+            var applicant = Applicant.AddApplicant(request.Name, request.FamilyName, request.Age, request.EmailAddress, address);
 
             await _applicantRepository.Add(applicant);
             await _applicantRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
 
-
-            return applicant;
+            return applicant.Id;
         }
 
         private async Task ValidateCountry(string countryOfOrigin)
         {
+            //ToDo Cash api county valid list valid country
             var response = await _countryClient.GetCountry(countryOfOrigin);
             if (response.StatusCode == HttpStatusCode.NotFound)
                 throw new ValidationException($"There is no country named {countryOfOrigin}");

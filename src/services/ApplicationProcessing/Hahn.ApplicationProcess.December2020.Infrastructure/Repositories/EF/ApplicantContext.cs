@@ -18,8 +18,6 @@ namespace Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF
         }
 
         public DbSet<Applicant> Applicants { get; set; }
-        public DbSet<Address> Address { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ApplicantEntityTypeConfiguration());

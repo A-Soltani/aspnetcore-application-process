@@ -25,11 +25,11 @@ namespace Hahn.ApplicationProcess.December2020.Web.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> AddApplicant([FromBody] AddApplicantCommand addApplicantCommand)
         {
-            var applicant = await _mediator.Send(addApplicantCommand);
-            return CreatedAtAction(nameof(GetApplicant), new { id = applicant.Id }, applicant);
+            var applicantId = await _mediator.Send(addApplicantCommand);
+            return CreatedAtRoute(nameof(GetApplicant), new { id = applicantId }, new {applicantId = applicantId });
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = nameof(GetApplicant))]
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Applicant))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
