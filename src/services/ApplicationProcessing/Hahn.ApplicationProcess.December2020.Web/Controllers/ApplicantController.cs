@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant;
+using Hahn.ApplicationProcess.December2020.Application.Queries.GetApplicant;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
 using MediatR;
 
@@ -26,7 +27,7 @@ namespace Hahn.ApplicationProcess.December2020.Web.Controllers
         public async Task<IActionResult> AddApplicant([FromBody] AddApplicantCommand addApplicantCommand)
         {
             var applicantId = await _mediator.Send(addApplicantCommand);
-            return CreatedAtRoute(nameof(GetApplicant), new { id = applicantId }, new {applicantId });
+            return CreatedAtRoute(nameof(GetApplicant), new { id = applicantId }, new { applicantId });
         }
 
         [HttpGet("{id:int}", Name = nameof(GetApplicant))]
@@ -35,12 +36,11 @@ namespace Hahn.ApplicationProcess.December2020.Web.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Applicant>> GetApplicant(int id)
         {
-            //if (!_repository.TryGetProduct(id, out var product))
-            //{
-            //    return NotFound();
-            //}
+            var applicant = await _mediator.Send(new GetApplicantQuery() { ApplicantId = id });
+            if (applicant == null)
+                return NotFound(new {Message = $"Applicant with id {id} not found."});
 
-            return Ok();
+            return Ok(applicant);
         }
 
 
