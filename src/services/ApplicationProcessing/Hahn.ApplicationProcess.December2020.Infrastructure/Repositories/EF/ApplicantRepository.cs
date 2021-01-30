@@ -2,34 +2,29 @@
 using System.Threading.Tasks;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
 using Hahn.ApplicationProcess.December2020.Domain.SeedWork;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF
 {
     public class ApplicantRepository : IApplicantRepository
     {
-        private readonly ApplicantContext _context;
+        private readonly ApplicantContext _applicantContext;
 
-        public IUnitOfWork UnitOfWork => _context;
+        public IUnitOfWork UnitOfWork => _applicantContext;
 
         public ApplicantRepository(ApplicantContext context) =>
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _applicantContext = context ?? throw new ArgumentNullException(nameof(context));
 
         public async Task<Applicant> Add(Applicant applicant) =>
-            (await _context.Applicants.AddAsync(applicant)).Entity;
+            (await _applicantContext.Applicants.AddAsync(applicant)).Entity;
 
-        public Task Update(Applicant applicant)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Update(Applicant applicant) => 
+            _applicantContext.Entry(applicant).State = EntityState.Modified;
 
-        public Task<Applicant> Get(int applicantId)
-        {
-            throw new System.NotImplementedException();
-        }
+        public async Task<Applicant> Get(int applicantId) => 
+            await _applicantContext.Applicants.FirstOrDefaultAsync(a => a.Id == applicantId);
 
-        public Task<Applicant> Delete(int applicantId)
-        {
-            throw new System.NotImplementedException();
-        }
+        public void Delete(Applicant applicant) => 
+            _applicantContext.Applicants.Remove(applicant);
     }
 }

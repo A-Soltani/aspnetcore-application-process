@@ -6,8 +6,8 @@ namespace Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantA
     public interface IApplicantRepository : IRepository<Applicant>
     {
         Task<Applicant> Add(Applicant applicant);
-        Task Update(Applicant applicant);
+        void Update(Applicant applicant);
         Task<Applicant> Get(int applicantId);
-        Task<Applicant> Delete(int applicantId);
+        void Delete(Applicant applicant);
     }
 }
