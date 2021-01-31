@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Hahn.ApplicationProcess.December2020.Infrastructure.CacheManagement;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Hahn.ApplicationProcess.December2020.Infrastructure.ExternalServices.RestCountries
@@ -12,19 +14,28 @@ namespace Hahn.ApplicationProcess.December2020.Infrastructure.ExternalServices.R
     public class CountryService : ICountryService
     {
         private readonly ICountryClient _countryClient;
-        private IMemoryCache _countryCache;
+        private readonly ICacheProvider _cacheProvider;
 
-        public CountryService(ICountryClient countryClient, IMemoryCache countryCache)
+        public CountryService(ICountryClient countryClient, ICacheProvider cacheProvider)
         {
             _countryClient = countryClient ?? throw new ArgumentNullException(nameof(countryClient));
-            _countryCache = countryCache ?? throw new ArgumentNullException(nameof(countryCache));
+            _cacheProvider = cacheProvider ?? throw new ArgumentNullException(nameof(cacheProvider));
         }
 
         public async Task<bool> CountryExists(string countryName)
         {
-            // ToDo cash
+            // ToDo Redis is better to multiple APIs
+            var country = _cacheProvider.GetFromCache<Country>(countryName);
+            if (country != null)
+                return true;
+
             var response = await _countryClient.GetCountry(countryName);
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode)
+            {
+                _cacheProvider.SetValue(countryName, new Country() { Name = countryName });
+                return true;
+            }
+            return false;
         }
     }
 }
