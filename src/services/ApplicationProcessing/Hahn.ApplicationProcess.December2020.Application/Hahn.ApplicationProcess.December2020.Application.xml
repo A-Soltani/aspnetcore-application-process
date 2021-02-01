@@ -25,5 +25,26 @@
         <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant.AddApplicantCommand.FullAddress">
             <example>IRAN, Tehran, 8 South Narmak</example>
         </member>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant.UpdateApplicantCommand.Name">
+            <example>Dear Ali</example>
+        </member>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant.UpdateApplicantCommand.FamilyName">
+            <example>Soltani</example>
+        </member>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant.UpdateApplicantCommand.Age">
+            <example>38</example>
+        </member>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant.UpdateApplicantCommand.EmailAddress">
+            <example>soltani1380@gmail.com</example>
+        </member>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant.UpdateApplicantCommand.CountryOfOrigin">
+            <example>IRAN</example>
+        </member>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant.UpdateApplicantCommand.City">
+            <example>Tehran</example>
+        </member>
+        <member name="P:Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant.UpdateApplicantCommand.FullAddress">
+            <example>IRAN, Tehran, 8 South Narmak</example>
+        </member>
     </members>
 </doc>

@@ -36,7 +36,7 @@ namespace Hahn.ApplicationProcess.December2020.Web
                     .AddCustomMediatr()
                     .AddCustomRefitClients(Configuration)
                     .AddInfrastructureServices(Configuration)
-                    //.AuthenticationService(Configuration)
+                    //.AuthenticationService(Configuration) // ToDo to hired applicants
                     .AddControllers();
         }
 

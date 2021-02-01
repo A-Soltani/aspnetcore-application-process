@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant;
+using Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant;
 using Hahn.ApplicationProcess.December2020.Application.Queries.GetApplicant;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
 using MediatR;
@@ -38,10 +39,21 @@ namespace Hahn.ApplicationProcess.December2020.Web.Controllers
         {
             var applicant = await _mediator.Send(new GetApplicantQuery() { ApplicantId = id });
             if (applicant == null)
-                return NotFound(new {Message = $"Applicant with id {id} not found."});
+                return NotFound(new { Message = $"Applicant with id {id} not found." });
 
             return Ok(applicant);
         }
+
+        [HttpPut("update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateApplicant([FromBody] UpdateApplicantCommand updateApplicantCommand)
+        {
+            var commandResult = await _mediator.Send(updateApplicantCommand);
+            return commandResult ? (IActionResult) Ok() : BadRequest();
+        }
+
+
 
 
     }

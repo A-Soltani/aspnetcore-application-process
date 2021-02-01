@@ -1,16 +1,23 @@
 ﻿using System;
-using System.Threading;
 using FluentValidation;
+using FluentValidation.Validators;
+using Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant;
 using Hahn.ApplicationProcess.December2020.Infrastructure.ExternalServices.RestCountries;
 
-namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
+namespace Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant
 {
-    public class AddApplicantCommandValidator : AbstractValidator<AddApplicantCommand>
+    public class UpdateApplicantCommandValidator : AbstractValidator<UpdateApplicantCommand>
     {
         private readonly ICountryService _countryService;
-        public AddApplicantCommandValidator(ICountryService countryService)
+        public UpdateApplicantCommandValidator(ICountryService countryService)
         {
             _countryService = countryService ?? throw new ArgumentNullException(nameof(countryService));
+
+            RuleFor(dto => dto.ApplicantId)
+                .NotNull()
+                .WithMessage("Applicant Id should not be empty")
+                .LessThan(1)
+                .WithMessage("Applicant Id is invalid");
 
             RuleFor(dto => dto.Age)
                 .NotNull()
