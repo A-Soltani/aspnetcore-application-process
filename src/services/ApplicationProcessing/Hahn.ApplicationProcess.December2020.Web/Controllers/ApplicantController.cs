@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Mime;
 using System.Threading.Tasks;
 using Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant;
+using Hahn.ApplicationProcess.December2020.Application.Commands.DeleteApplicant;
 using Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant;
 using Hahn.ApplicationProcess.December2020.Application.Queries.GetApplicant;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
@@ -45,16 +46,24 @@ namespace Hahn.ApplicationProcess.December2020.Web.Controllers
         }
 
         [HttpPut("update")]
+        [ProducesDefaultResponseType]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateApplicant([FromBody] UpdateApplicantCommand updateApplicantCommand)
         {
-            var commandResult = await _mediator.Send(updateApplicantCommand);
-            return commandResult ? (IActionResult) Ok() : BadRequest();
+            await _mediator.Send(updateApplicantCommand);
+
+            return NoContent();
         }
 
+        [HttpDelete("delete/{id}")]
+        [ProducesDefaultResponseType]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteApplicant(int id)
+        {
+            await _mediator.Send(new DeleteApplicantCommand { ApplicantId = id });
 
-
+            return NoContent();
+        }
 
     }
 
