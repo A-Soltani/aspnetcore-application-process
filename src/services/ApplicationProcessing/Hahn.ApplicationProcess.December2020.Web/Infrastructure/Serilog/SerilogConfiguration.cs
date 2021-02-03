@@ -11,12 +11,11 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.Serilog
 
         public static IConfiguration GetConfiguration()
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables();
-
-            return builder.Build();
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+            
+            return configuration;
         }
 
         public static ILogger CreateLogger(IConfiguration configuration)
@@ -24,10 +23,6 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.Serilog
             // ToDo Seq could be setup here
             //var seqServerUrl = configuration["Serilog:SeqServerUrl"];
             return new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .Enrich.WithProperty("ApplicationContext", AppName)
-                .Enrich.FromLogContext()
-                .WriteTo.Console()
                 .ReadFrom.Configuration(configuration)
                 .CreateLogger();
         }

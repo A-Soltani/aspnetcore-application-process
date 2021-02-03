@@ -15,7 +15,7 @@ namespace Hahn.ApplicationProcess.December2020.Web.Infrastructure.CustomExtensio
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicantContext>(options => options.UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
+            services.AddDbContext<ApplicantContext>(options => options.UseInMemoryDatabase(databaseName: "test"), ServiceLifetime.Scoped, ServiceLifetime.Scoped);
 
             services.AddTransient<IApplicantRepository, ApplicantRepository>();
             services.AddTransient<ICountryService, CountryService>();
