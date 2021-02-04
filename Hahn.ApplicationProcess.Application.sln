@@ -11,17 +11,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationProcessing", "Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicationProcess.December2020.Domain", "src\services\ApplicationProcessing\Hahn.ApplicationProcess.December2020.Domain\Hahn.ApplicationProcess.December2020.Domain.csproj", "{529A120D-F8F9-42CF-9D1E-7F0A2BB7E953}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web apps", "web apps", "{C678CBBA-D9B9-46C7-BF28-FFF22C7EDB25}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client apps", "client apps", "{C678CBBA-D9B9-46C7-BF28-FFF22C7EDB25}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0CDC62E9-40D6-48D1-A9E8-DFC5C84AFA2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationProcessing.UnitTests", "src\services\ApplicationProcessing\tests\ApplicationProcessing.UnitTests\ApplicationProcessing.UnitTests.csproj", "{49F0405D-D670-4952-A673-17F661D34BCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationProcessing.UnitTests", "src\services\ApplicationProcessing\tests\ApplicationProcessing.UnitTests\ApplicationProcessing.UnitTests.csproj", "{49F0405D-D670-4952-A673-17F661D34BCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hahn.ApplicationProcess.December2020.Infrastructure", "src\services\ApplicationProcessing\Hahn.ApplicationProcess.December2020.Infrastructure\Hahn.ApplicationProcess.December2020.Infrastructure.csproj", "{7FBEF286-7475-427D-958E-D3BB1E24796E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicationProcess.December2020.Infrastructure", "src\services\ApplicationProcessing\Hahn.ApplicationProcess.December2020.Infrastructure\Hahn.ApplicationProcess.December2020.Infrastructure.csproj", "{7FBEF286-7475-427D-958E-D3BB1E24796E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hahn.ApplicationProcess.December2020.Application", "src\services\ApplicationProcessing\Hahn.ApplicationProcess.December2020.Application\Hahn.ApplicationProcess.December2020.Application.csproj", "{FDFFB209-37EE-4D97-A3D0-BFF2F845DC7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicationProcess.December2020.Application", "src\services\ApplicationProcessing\Hahn.ApplicationProcess.December2020.Application\Hahn.ApplicationProcess.December2020.Application.csproj", "{FDFFB209-37EE-4D97-A3D0-BFF2F845DC7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hahn.ApplicationProcess.December2020.Web", "src\services\ApplicationProcessing\Hahn.ApplicationProcess.December2020.Web\Hahn.ApplicationProcess.December2020.Web.csproj", "{D5007013-DC6B-4501-8E0E-776C36923FC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicationProcess.December2020.Web", "src\services\ApplicationProcessing\Hahn.ApplicationProcess.December2020.Web\Hahn.ApplicationProcess.December2020.Web.csproj", "{D5007013-DC6B-4501-8E0E-776C36923FC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
