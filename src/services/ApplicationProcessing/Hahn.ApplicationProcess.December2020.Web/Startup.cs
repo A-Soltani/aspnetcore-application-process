@@ -50,6 +50,8 @@ namespace Hahn.ApplicationProcess.December2020.Web
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hahn.ApplicationProcess.December2020.Web v1"));
             }
 
+            app.UseCors("CorsPolicy");
+
             app.UseRouting();
 
             app.UseAuthorization();

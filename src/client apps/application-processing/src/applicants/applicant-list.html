@@ -1,3 +1,40 @@
 <template>
-  <p>Applicant List</p>
+  <div>
+    <a class="btn btn-danger btn-sm" route-href="/add" role="button">Add</a>
+    <a route-href="route: add">Back to List</a>
+
+  </div>
+
+  <table class="table">
+    <thead>
+      <!-- <th>Index</th> -->
+      <th scope="col">Name</th>
+      <th scope="col">Family Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Email Address</th>
+      <th scope="col">City</th>
+      <th scope="col">fullAddress</th>
+      <td scope="col">Edit</td>
+      <td scope="col">Delete</td>
+    </thead>
+    <tbody>
+
+      <tr repeat.for="applicant of applicants">
+        <!-- <td> {{ i + 1 }} </td> -->
+        <td> ${ applicant.name } </td>
+        <td> ${ applicant.familyName } </td>
+        <td> ${ applicant.age } </td>
+        <td> ${ applicant.emailAddress } </td>
+        <td> ${ applicant.countryOfOrigin } </td>
+        <td> ${ applicant.city } </td>
+        <td> ${ applicant.fullAddress } </td>
+        <!-- <td>
+        <a [routerLink]="['edit', applicant.id]" routerLinkActive="active">Edit</a>
+      </td>
+      <td>
+        <a href="#" (click)="onDelete(applicant.id)" onclick="return false">Delete</a>
+      </td> -->
+      </tr>
+    </tbody>
+  </table>
 </template>

@@ -1,22 +1,39 @@
+import {inject} from 'aurelia-framework';
+
+
+import { HttpClient } from 'aurelia-fetch-client';
 import { Applicant } from './applicant-model';
 
+@inject(HttpClient)
 export class ApplicantService {
-  applicant: Applicant = {
-    city: "",
-    age: 30,
-    countryOfOrigin: "",
-    emailAddress: "",
-    familyName: "",
-    fullAddress: "",
-    id: 1,
-    name: ""
-  }   
-  GetApplicants(): Applicant[] {
-    return [this.applicant];
+  applicants: Applicant[] = []
+
+  constructor(private http: HttpClient) {
+    this.http = http;
   }
 
-  GetApplicant(id: number): Applicant {
-     
-    return this.applicant;
+  getApplicants() {
+    return this.http.fetch('Applicant/list')
+      .then(response => response.json())
+      .then(applicants => this.applicants = applicants);
+  }
+
+  // GetApplicant(id: number): Applicant {
+
+  //   return this.applicant;
+  // }
+
+
+
+  
+
+  
+}
+
+
+
+export class HttpError extends Error {
+  constructor(public readonly response: Response) {
+    super(`HTTP error code ${response.status} (${response.statusText})`);
   }
 }
