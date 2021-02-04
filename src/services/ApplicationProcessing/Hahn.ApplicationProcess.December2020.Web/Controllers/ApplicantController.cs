@@ -9,7 +9,9 @@ using Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant;
 using Hahn.ApplicationProcess.December2020.Application.Commands.DeleteApplicant;
 using Hahn.ApplicationProcess.December2020.Application.Commands.UpdateApplicant;
 using Hahn.ApplicationProcess.December2020.Application.Queries.GetApplicant;
+using Hahn.ApplicationProcess.December2020.Application.Queries.GetApplicants;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
+using Hahn.ApplicationProcess.December2020.Web.DTOs;
 using MediatR;
 
 namespace Hahn.ApplicationProcess.December2020.Web.Controllers
@@ -36,14 +38,40 @@ namespace Hahn.ApplicationProcess.December2020.Web.Controllers
         [Consumes(MediaTypeNames.Application.Json)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Applicant))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Applicant>> GetApplicant(int id)
+        public async Task<ActionResult<ApplicantDto>> GetApplicant(int id)
         {
             var applicant = await _mediator.Send(new GetApplicantQuery() { ApplicantId = id });
             if (applicant == null)
                 return NotFound(new { Message = $"Applicant with id {id} not found." });
 
-            return Ok(applicant);
+            var applicantDto = MapApplicantToDto(applicant);
+
+            return Ok(applicantDto);
         }
+
+        [HttpGet("list")]
+        [Consumes(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Applicant))]
+        public async Task<ActionResult<IEnumerable<ApplicantDto>>> GetApplicants()
+        {
+            var applicants = await _mediator.Send(new GetApplicantsQuery() );
+
+            var applicantList = applicants.Select(MapApplicantToDto);
+            return Ok(applicantList);
+        }
+
+        private ApplicantDto MapApplicantToDto(Applicant applicant) =>
+            new ApplicantDto()
+            {
+                Id = applicant.Id,
+                CountryOfOrigin = applicant.Address.Country,
+                City = applicant.Address.City,
+                FullAddress = applicant.Address.FullAddress,
+                Name = applicant.Name,
+                EmailAddress = applicant.EmailAddress,
+                FamilyName = applicant.FamilyName,
+                Age = applicant.Age
+            };
 
         [HttpPut("update")]
         [ProducesDefaultResponseType]

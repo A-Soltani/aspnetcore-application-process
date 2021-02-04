@@ -11,7 +11,6 @@ namespace Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantA
         public string EmailAddress { get; private set; }
         public Address Address { get; private set; }
 
-
         public bool Hired { get; private set; }
 
         public Applicant()

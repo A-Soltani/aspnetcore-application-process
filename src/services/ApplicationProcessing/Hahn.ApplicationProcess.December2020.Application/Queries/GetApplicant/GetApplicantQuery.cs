@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Hahn.ApplicationProcess.December2020.Application.Queries.GetApplicant
 {
-    public class GetApplicantQuery: IRequest<Applicant>, IRequest<Unit>
+    public class GetApplicantQuery: IRequest<Applicant>
     {
         public int ApplicantId { get; set; }
     }

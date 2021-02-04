@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
 using Hahn.ApplicationProcess.December2020.Domain.SeedWork;
@@ -23,6 +24,9 @@ namespace Hahn.ApplicationProcess.December2020.Infrastructure.Repositories.EF
 
         public async Task<Applicant> Get(int applicantId) => 
             await _applicantContext.Applicants.FirstOrDefaultAsync(a => a.Id == applicantId);
+
+        public async Task<IEnumerable<Applicant>> GetList() => 
+            await _applicantContext.Applicants.ToListAsync();
 
         public void Delete(Applicant applicant) => 
             _applicantContext.Applicants.Remove(applicant);

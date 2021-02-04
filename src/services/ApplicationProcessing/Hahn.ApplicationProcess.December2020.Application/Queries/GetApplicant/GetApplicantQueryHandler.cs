@@ -13,9 +13,7 @@ namespace Hahn.ApplicationProcess.December2020.Application.Queries.GetApplicant
         public GetApplicantQueryHandler(IApplicantRepository applicantRepository) => 
             _applicantRepository = applicantRepository ?? throw new ArgumentNullException(nameof(applicantRepository));
 
-        public async Task<Applicant> Handle(GetApplicantQuery request, CancellationToken cancellationToken)
-        {
-            return await _applicantRepository.Get(request.ApplicantId);
-        }
+        public async Task<Applicant> Handle(GetApplicantQuery request, CancellationToken cancellationToken) => 
+            await _applicantRepository.Get(request.ApplicantId);
     }
 }

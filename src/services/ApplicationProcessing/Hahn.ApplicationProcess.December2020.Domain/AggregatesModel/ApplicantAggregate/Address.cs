@@ -8,13 +8,15 @@ namespace Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantA
     {
         public string City { get; private set; }
         public string Country { get; private set; }
+        public string FullAddress { get; private set; }
 
         public Address() { }
 
-        public Address(string city, string country)
+        public Address(string city, string country, string fullAddress)
         {
             City = city;
             Country = country;
+            FullAddress = fullAddress;
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

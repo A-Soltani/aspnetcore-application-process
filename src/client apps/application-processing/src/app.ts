@@ -17,11 +17,16 @@ export class App {
   //   this.router = router;
   // }
   configureRouter(config, router): void {
-    config.title = 'Aurelia';
+    config.title = 'Application Process';
+    config.options.pushState = true;
+    config.options.root = '/';
     config.map([
       { route: ['', 'home'], name: 'home', moduleId: PLATFORM.moduleName('home/home'), nav: true, title: 'Home' },
+      { route: 'applicants', name: 'applicants', moduleId: PLATFORM.moduleName('applicants/applicant-list'), nav: true, title: 'applicants' },
+
     ]);
     this.router = router;
+    console.log(this.router);
   }
 }
 

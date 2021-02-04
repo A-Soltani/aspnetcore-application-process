@@ -17,7 +17,7 @@ namespace Hahn.ApplicationProcess.December2020.Application.Commands.AddApplicant
 
         public async Task<int> Handle(AddApplicantCommand request, CancellationToken cancellationToken)
         {
-            var address = new Address(request.City, request.CountryOfOrigin);
+            var address = new Address(request.City, request.CountryOfOrigin, request.FullAddress);
             var applicant = Applicant.AddApplicant(request.Name, request.FamilyName, request.Age, request.EmailAddress, address);
 
             await _applicantRepository.Add(applicant);
