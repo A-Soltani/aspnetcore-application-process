@@ -8,19 +8,12 @@ import { ApplicantService } from './shared/applicant-service';
 @inject(ApplicantService)
 export class ApplicantList {
   applicants = []
-  // router: Router;
-
-  // configureRouter(config: RouterConfiguration, router: Router): void {
-  //   config.title = 'Applicants';
-  //   // config.options.pushState = true;
-  //   // config.options.root = '/';
-  //   config.map([
-  //     { route: '', name: 'applicants', moduleId: PLATFORM.moduleName('applicants/applicant-list'), nav: true, title: 'Applicants' },
-  //     { route: 'add', name: 'add', moduleId: PLATFORM.moduleName('applicants/applicant-add'), nav: true, title: 'add applicants' },
-  //   ]);
-  //   this.router = router;
-  // }
+  
   constructor(private applicantService: ApplicantService) {    
+    
+  }
+
+  activate(): void {
     this.getApplicants();
   }
 

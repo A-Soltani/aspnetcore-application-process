@@ -2,6 +2,7 @@
   margin-left: 10px;
   width: 100%;
   overflow-y: auto;
+  min-height: 550px;
 }
 header {
     min-height: 70px;

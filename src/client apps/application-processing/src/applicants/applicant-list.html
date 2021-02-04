@@ -1,8 +1,6 @@
 <template>
   <div>
-    <a class="btn btn-danger btn-sm" route-href="/add" role="button">Add</a>
-    <a route-href="route: add">Back to List</a>
-
+    <a route-href="route: applicants/add" class="btn btn-success btn-sm" role="button">Add</a>
   </div>
 
   <table class="table">
@@ -13,7 +11,8 @@
       <th scope="col">Age</th>
       <th scope="col">Email Address</th>
       <th scope="col">City</th>
-      <th scope="col">fullAddress</th>
+      <th scope="col">Country</th>
+      <th scope="col">Address</th>
       <td scope="col">Edit</td>
       <td scope="col">Delete</td>
     </thead>
@@ -28,12 +27,16 @@
         <td> ${ applicant.countryOfOrigin } </td>
         <td> ${ applicant.city } </td>
         <td> ${ applicant.fullAddress } </td>
-        <!-- <td>
-        <a [routerLink]="['edit', applicant.id]" routerLinkActive="active">Edit</a>
-      </td>
-      <td>
-        <a href="#" (click)="onDelete(applicant.id)" onclick="return false">Delete</a>
-      </td> -->
+        <td>
+          <a route-href="route: applicants/edit; params.bind: {id:applicant.id}" class="btn btn-primary btn-sm" role="button">
+            <i class="fa fa-edit fa-white"></i>          
+          </a>          
+        </td>
+        <td>
+          <a (click)="onDelete(applicant.id)" onclick="return false" class="btn btn-danger btn-sm">
+            <i class="fa fa-trash-o fa-white"></i>
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>
