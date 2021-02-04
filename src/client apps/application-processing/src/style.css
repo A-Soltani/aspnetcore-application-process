@@ -1,0 +1,14 @@
+.body-content {
+  margin-left: 10px;
+  width: 100%;
+  overflow-y: auto;
+}
+header {
+    min-height: 70px;
+    width: 100%;
+}
+footer {
+    background-color: #9eab9e;
+    min-height: 30px;
+    width: 100%;
+}

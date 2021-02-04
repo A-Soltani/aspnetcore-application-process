@@ -5,6 +5,7 @@ import { PLATFORM } from 'aurelia-pal';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 
+import './style.css';
 
 export function configure(aurelia: Aurelia): void {
   aurelia.use
