@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="from-group">
     <a route-href="route: applicants/add" class="btn btn-success btn-sm" role="button">Add</a>
   </div>
-
+<div style="padding-top: 10px;">
   <table class="table">
     <thead>
       <!-- <th>Index</th> -->
@@ -17,7 +17,7 @@
       <td scope="col">Delete</td>
     </thead>
     <tbody>
-
+      
       <tr repeat.for="applicant of applicants">
         <!-- <td> {{ i + 1 }} </td> -->
         <td> ${ applicant.name } </td>
@@ -40,4 +40,5 @@
       </tr>
     </tbody>
   </table>
+</div>
 </template>
