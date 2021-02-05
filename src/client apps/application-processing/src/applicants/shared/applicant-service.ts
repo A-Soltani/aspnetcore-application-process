@@ -1,11 +1,12 @@
-import {inject} from 'aurelia-framework';
-import {HttpClient, json} from 'aurelia-fetch-client';
+import { inject } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
 
 import { Applicant } from './applicant-model';
 
 @inject(HttpClient)
 export class ApplicantService {
   applicants: Applicant[] = []
+  applicant: Applicant
 
   constructor(private http: HttpClient) {
     this.http = http;
@@ -20,35 +21,48 @@ export class ApplicantService {
   addApplicant(applicant) {
 
     return this.http
-    .fetch('Applicant/add', {
-      method: 'post',
-      body: json(applicant)
-    })
-    .then(response => response.json())
-    .then(savedComment => {
-      alert(`Saved comment! ID: ${savedComment.id}`);
-    })
-    .catch(error => {
-      alert('Error saving comment!');
-    });
-  
-
-  
-    return this.http.post('Applicant/add', applicant)
-      .then(response => response.json());
-      // .then(applicants => this.applicants = applicants);
+      .fetch('Applicant/add', {
+        method: 'post',
+        body: json(applicant)
+      })
+      .then(response => response.json())
+      .then(savedApplicant => {
+        alert(`Saved Applicant. ID: ${savedApplicant.applicantId}`);
+      })
+      .catch(error => {
+        alert('Error saving Applicant');
+      });
   }
 
-  // getApplicant(id: number): Applicant {
+  updateApplicant(applicant) {
 
-  //   return this.applicant;
-  // }
+    return this.http
+      .fetch('Applicant/update', {
+        method: 'post',
+        body: json(applicant)
+      })
+      .then(response => response.json())
+      .then(savedApplicant => {
+        alert(`Updated Applicant. ID: ${savedApplicant.applicantId}`);
+      })
+      .catch(error => {
+        alert('Error updating Applicant');
+      });
+  }
 
+  getApplicant(id) {
+    return new Promise((resolve, reject) => {
+      this.http.fetch(`Applicant/${id}`)
+        .then(response => response.json())
+        .then(fetchedApplicant => {
+          alert(`Get Applicant. ID: ${fetchedApplicant.id}`);
+        })
+        .catch(error => {
+          alert('Error geting Applicant');
+        });
+    });
+  }
 
-
-  
-
-  
 }
 
 

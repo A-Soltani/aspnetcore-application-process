@@ -1,10 +1,10 @@
 <template>
   <h1>${title}</h1>
-  <form submit.delegate ="submit()">
+  <form id="applicantForm" submit.delegate ="submit()">
     <div class="form-row">
       <div class="col">
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" value.bind="applicant.name">
+        <input type="text" class="form-control" id="name" value.bind="applicant.name & validate">
       </div>
       <div class="col">
         <label for="familyName">Family Name</label>
@@ -39,8 +39,8 @@
     </div>
 
     <div class="from-group">
-      <button type="button" click.delegate="submit()" class="btn btn-info">Send</button>
-      <button type="reset" class="btn btn-danger">Reset</button>
+      <button type="button" click.delegate="submit()" disabled.bind="controller.errors.length > 0" class="btn btn-info">Send</button>
+      <button type="reset" click.delegate="reset()" class="btn btn-danger">Reset</button>
     </div>
   </form>
 </template>
