@@ -1,34 +1,42 @@
 <template>
   <form action="">
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" value.bind="applicant.name">
+    <div class="form-row">
+      <div class="col">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" value.bind="applicant.name">
+      </div>
+      <div class="col">
+        <label for="familyName">Family Name</label>
+        <input type="text" class="form-control" id="familyName" value.bind="applicant.familyName">
+      </div>
     </div>
-    <div class="form-group">
-      <label for="familyName">Family Name</label>
-      <input type="text" class="form-control" id="familyName" value.bind="applicant.familyName">
+
+    <div class="form-row">
+      <div class="col">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" id="age" value.bind="applicant.age">
+      </div>
+      <div class="col">
+        <label for="emailAddress">Email Address</label>
+        <input type="text" class="form-control" id="emailAddress" value.bind="applicant.emailAddress">
+      </div>
     </div>
-    <div class="form-group">
-      <label for="age">Age</label>
-      <input type="text" class="form-control" id="age" value.bind="applicant.age">
-    </div>
-    <div class="form-group">
-      <label for="emailAddress">Email Address</label>
-      <input type="text" class="form-control" id="emailAddress" value.bind="applicant.emailAddress">
-    </div>
-    <div class="form-group">
-      <label for="countryOfOrigin">Country Of Origin</label>
-      <input type="text" class="form-control" id="countryOfOrigin" value.bind="applicant.countryOfOrigin">
-    </div>
-    <div class="form-group">
-      <label for="city">City</label>
-      <input type="text" class="form-control" id="city" value.bind="applicant.city">
+
+    <div class="form-row">
+      <div class="col">
+        <label for="countryOfOrigin">Country Of Origin</label>
+        <input type="text" class="form-control" id="countryOfOrigin" value.bind="applicant.countryOfOrigin">
+      </div>
+      <div class="col">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" value.bind="applicant.city">
+      </div>
     </div>
     <div class="form-group">
       <label for="fullAddress">Full Address</label>
       <input type="text" class="form-control" id="fullAddress" value.bind="applicant.fullAddress">
     </div>
-    
+
     <div class="from-group">
       <button type="button" click.delegate="send()" class="btn btn-info">Send</button>
       <button type="reset" click.delegate="reset()" class="btn btn-danger">Reset</button>

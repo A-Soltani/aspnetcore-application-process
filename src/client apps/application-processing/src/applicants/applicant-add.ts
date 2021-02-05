@@ -16,8 +16,8 @@ export class ApplicantAdd {
     this.applicant = new Applicant();
   }
 
-  send(): void {   
-    
+  send(): void {
+
     this.applicantService.addApplicant(this.applicant)
       .then(applicant => {
         console.log(applicant)
@@ -25,9 +25,7 @@ export class ApplicantAdd {
       }).catch(err => console.log(err));
   }
 
-  reset() {
-
-  }
+  
 
 
 
