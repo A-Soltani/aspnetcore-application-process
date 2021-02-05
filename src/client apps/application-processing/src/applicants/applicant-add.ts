@@ -16,15 +16,17 @@ export class ApplicantAdd {
     this.applicant = new Applicant();
   }
 
-  create(): void {
-    // const applicant = JSON.parse(JSON.stringify(this.applicant));
-    // console.log(applicant);
+  send(): void {   
     
     this.applicantService.addApplicant(this.applicant)
       .then(applicant => {
         console.log(applicant)
         // this._ea.publish(new ContactCreated(applicant));
       }).catch(err => console.log(err));
+  }
+
+  reset() {
+
   }
 
 
