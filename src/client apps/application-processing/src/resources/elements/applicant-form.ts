@@ -3,32 +3,29 @@ import { EventAggregator } from "aurelia-event-aggregator";
 import { Router } from 'aurelia-router';
 import { ValidationRules, ValidationControllerFactory, validationMessages } from 'aurelia-validation'
 
-import { Applicant } from './shared/applicant-model';
-import { ApplicantService } from './shared/applicant-service';
+import { ApplicantService } from 'applicants/shared/applicant-service';
 
 
 @inject(Router, EventAggregator, ApplicantService, ValidationControllerFactory)
-export class ApplicantAdd {
-  title: string
+export class ApplicantForm {
+  @bindable title;
+  @bindable applicant;
   controller: any
-  @bindable applicant: Applicant
 
   constructor(private router: Router, private ea: EventAggregator, private applicantService: ApplicantService, ValidationControllerFactory) {
     this.controller = ValidationControllerFactory.createForCurrentScope();
   }
 
-  attached() {
-    this.title = "Add Applicant"
-    this.applicant = new Applicant();
+  submit(): void {
+    this.applicantService.addApplicant(this.applicant)
+    .then(applicant => {
+      this.router.navigateToRoute('applicants')
+      // this._ea.publish(new ContactCreated(applicant));
+    }).catch(err => console.log(err));
   }
 
-  sendApplicant(): void {
-
-    this.applicantService.addApplicant(this.applicant)
-      .then(applicant => {
-        this.router.navigateToRoute('applicants')
-        // this._ea.publish(new ContactCreated(applicant));
-      }).catch(err => console.log(err));
+  valueChanged(newValue, oldValue) {
+    //
   }
 
   applicantChanged(newValue, oldValue): void {
@@ -36,8 +33,5 @@ export class ApplicantAdd {
     if (this.applicant) {
       console.log(this.applicant);
     }
-
   }
-
-
 }
