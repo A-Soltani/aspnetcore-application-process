@@ -1,5 +1,6 @@
-﻿using Hahn.ApplicationProcess.December2020.Domain.AggregatesModel.ApplicantAggregate;
-using Hahn.ApplicationProcess.December2020.Domain.Exceptions;
+﻿
+using ApplicationProcess.Domain.AggregatesModel.ApplicantAggregate;
+using ApplicationProcess.Domain.Exceptions;
 using Xunit;
 
 namespace ApplicationProcessing.UnitTests.Domain
