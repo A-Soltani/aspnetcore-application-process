@@ -9,7 +9,7 @@ namespace ApplicationProcess.Application.Commands.AddApplicant
         private readonly ICountryService _countryService;
         public AddApplicantCommandValidator(ICountryService countryService)
         {
-            _countryService = countryService ?? throw new ArgumentNullException(nameof(countryService));
+            //_countryService = countryService ?? throw new ArgumentNullException(nameof(countryService));
 
             RuleFor(dto => dto.Age)
                 .NotNull()
@@ -22,7 +22,7 @@ namespace ApplicationProcess.Application.Commands.AddApplicant
             RuleFor(dto => dto.CountryOfOrigin)
                 .NotEmpty()
                 .WithMessage("CountryOfOrigin is required")
-                .MustAsync(async (countryName, cancellation) => await _countryService.CountryExists(countryName))
+                //.MustAsync(async (countryName, cancellation) => await _countryService.CountryExists(countryName))
                 .WithMessage($"Country not found.");
             RuleFor(dto => dto.EmailAddress)
                 .NotEmpty().

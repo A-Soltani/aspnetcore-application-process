@@ -10,6 +10,7 @@ namespace ApplicationProcess.Web.Infrastructure.CustomExtensions
         public static IServiceCollection AddCustomMediatr(this IServiceCollection services)
         {
             services.AddMediatR(typeof(AddApplicantCommandHandler));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
             return services;
