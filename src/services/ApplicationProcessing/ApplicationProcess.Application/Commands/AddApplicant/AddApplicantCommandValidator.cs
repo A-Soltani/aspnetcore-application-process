@@ -6,8 +6,8 @@ namespace ApplicationProcess.Application.Commands.AddApplicant
 {
     public class AddApplicantCommandValidator : AbstractValidator<AddApplicantCommand>
     {
-        private readonly ICountryService _countryService;
-        public AddApplicantCommandValidator(ICountryService countryService)
+        //private readonly ICountryService _countryService;
+        public AddApplicantCommandValidator(/*ICountryService countryService*/)
         {
             //_countryService = countryService ?? throw new ArgumentNullException(nameof(countryService));
 

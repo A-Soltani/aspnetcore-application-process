@@ -1,4 +1,5 @@
 using ApplicationProcess.Web.Infrastructure.CustomExtensions;
+using ApplicationProcess.Web.Infrastructure.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,7 +28,10 @@ namespace ApplicationProcess.Web
                     .AddCustomRefitClients(Configuration)
                     .AddInfrastructureServices(Configuration)
                     //.AuthenticationService(Configuration) // ToDo to hired applicants
-                    .AddControllers();
+                    .AddControllers(options =>
+                    {
+                        options.Filters.Add(typeof(HttpGlobalExceptionFilter));
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

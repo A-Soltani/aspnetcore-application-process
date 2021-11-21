@@ -11,7 +11,9 @@ namespace ApplicationProcess.Web.Infrastructure.CustomExtensions
         {
             services.AddMediatR(typeof(AddApplicantCommandHandler));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>));
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            //services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+
+          
 
             return services;
         }

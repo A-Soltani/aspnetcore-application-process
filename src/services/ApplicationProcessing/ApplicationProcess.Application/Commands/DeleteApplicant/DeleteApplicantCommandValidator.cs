@@ -9,7 +9,7 @@ namespace ApplicationProcess.Application.Commands.DeleteApplicant
             RuleFor(dto => dto.ApplicantId)
                 .NotNull()
                 .WithMessage("Applicant Id should not be empty")
-                .LessThan(1)
+                .GreaterThan(1)
                 .WithMessage("Applicant Id is invalid");
         }
     }

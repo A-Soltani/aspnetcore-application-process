@@ -11,23 +11,25 @@ using Microsoft.Extensions.Logging;
 
 namespace ApplicationProcess.Application.Behaviors
 {
-    public class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public sealed class ValidatorBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+        where TRequest : IRequest<TResponse>
     {
-        private readonly ILogger<ValidatorBehavior<TRequest, TResponse>> _logger;
+        //private readonly ILogger<ValidatorBehavior<TRequest, TResponse>> _logger;
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-        public ValidatorBehavior(ILogger<ValidatorBehavior<TRequest, TResponse>> logger, IEnumerable<IValidator<TRequest>> validators)
+        public ValidatorBehavior(ILogger<ValidatorBehavior<TRequest, TResponse>> logger,
+            IEnumerable<IValidator<TRequest>> validators)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            //_logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _validators = validators ?? throw new ArgumentNullException(nameof(validators));
         }
 
 
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
+            RequestHandlerDelegate<TResponse> next)
         {
             var typeName = request.GetGenericTypeName();
 
-            _logger.LogInformation("----- Validating command {CommandType}", typeName);
 
             var failures = _validators
                 .Select(v => v.Validate(request))
@@ -37,13 +39,25 @@ namespace ApplicationProcess.Application.Behaviors
 
             if (failures.Any())
             {
-                _logger.LogWarning("Validation errors - {CommandType} - Command: {@Command} - Errors: {@ValidationErrors}", typeName, request, failures);
 
                 throw new ApplicationProcessDomainException(
                     $"Command Validation Errors for type {typeof(TRequest).Name}", new ValidationException("Validation exception", failures));
             }
 
+
+            //if (_validators.Any())
+            //{
+            //    var context = new ValidationContext<TRequest>(request);
+            //    var validationResults =
+            //        await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
+            //    var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
+            //    if (failures.Count != 0)
+            //        throw new FluentValidation.ValidationException(failures);
+
+            //}
+
             return await next();
+
         }
     }
 }
