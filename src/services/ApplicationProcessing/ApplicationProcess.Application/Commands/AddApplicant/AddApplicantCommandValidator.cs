@@ -1,5 +1,4 @@
 ﻿using System;
-using ApplicationProcess.Infrastructure.ExternalServices.RestCountries;
 using FluentValidation;
 
 namespace ApplicationProcess.Application.Commands.AddApplicant

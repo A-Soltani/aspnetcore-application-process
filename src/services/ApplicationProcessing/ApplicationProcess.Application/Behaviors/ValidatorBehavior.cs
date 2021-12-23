@@ -17,8 +17,7 @@ namespace ApplicationProcess.Application.Behaviors
         //private readonly ILogger<ValidatorBehavior<TRequest, TResponse>> _logger;
         private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-        public ValidatorBehavior(ILogger<ValidatorBehavior<TRequest, TResponse>> logger,
-            IEnumerable<IValidator<TRequest>> validators)
+        public ValidatorBehavior(IEnumerable<IValidator<TRequest>> validators)
         {
             //_logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _validators = validators ?? throw new ArgumentNullException(nameof(validators));

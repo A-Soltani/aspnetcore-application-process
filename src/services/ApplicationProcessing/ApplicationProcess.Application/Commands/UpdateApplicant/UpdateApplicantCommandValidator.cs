@@ -1,5 +1,5 @@
 ﻿using System;
-using ApplicationProcess.Infrastructure.ExternalServices.RestCountries;
+using ApplicationProcess.Application.Interfaces.ExternalServices;
 using FluentValidation;
 
 namespace ApplicationProcess.Application.Commands.UpdateApplicant
@@ -52,4 +52,6 @@ namespace ApplicationProcess.Application.Commands.UpdateApplicant
                 .WithMessage("Full address must be at least 10 Characters");
         }
     }
+
+    
 }

@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ApplicationProcess.Application.Interfaces.ExternalServices;
 using ApplicationProcess.Infrastructure.CacheManagement;
 
 namespace ApplicationProcess.Infrastructure.ExternalServices.RestCountries
 {
-    public interface ICountryService
-    {
-        Task<bool> CountryExists(string countryName);
-    }
-
     public class CountryService : ICountryService
     {
         private readonly ICountryClient _countryClient;
